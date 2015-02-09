@@ -1,4 +1,4 @@
-public class Recursion{
+public class Recursion implements hw1{
 	public String name(){
 		return "Zhang,Rouqian";
 	}
@@ -39,7 +39,8 @@ public class Recursion{
 			return sqrtHelper(n, (n/guess+guess)/2);
 		}
 	}
-		
+
+	/*	
 	public static void main(String[]args){
 		Recursion r = new Recursion();
 		System.out.println(r.name());
@@ -55,6 +56,7 @@ public class Recursion{
 		System.out.println(r.sqrt(36));
 		System.out.println(r.sqrt(2));
 	}
+	*/
 }
 		
 			
