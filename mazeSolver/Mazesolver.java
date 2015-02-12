@@ -96,7 +96,7 @@ public class Mazesolver{
 	}
     }
     
-    public boolean solve(char[][]maze,int x,int y){
+    public boolean solve(int x,int y){
 	System.out.println(this);
 	wait(20);
 	//ASSIGNMENT IS TO COMPLETE THIS PART******************
@@ -105,8 +105,14 @@ public class Mazesolver{
 	}
 	if(maze[x][y] == ' '){
 	    //mark the floor with @
+	    maze[x][y] = '@';
 	    //try to move in all directions
-	    //when that fails, we replace with @
+	    if( solve(x+1, y) || solve(x-1, y)||
+	        solve(x, y+1) || solve(x, y-1)){
+		return true;
+	    }
+	    //when that fails, we replace @ with .
+	    maze[x][y] = '.';
 	}
 	
 	//ASSIGNMENT IS TO COMPLETE THE PART ABOVE THIS******************
