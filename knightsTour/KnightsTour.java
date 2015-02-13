@@ -31,11 +31,11 @@ public class KnightsTour{
 	for(int i=0;i<board.length;i++){
 	    for(int j=0;j<board[i].length;j++){
 		board[i][j] = -1;
-		ans += " ";
+		ans += " " + board[i][j];
 	    }
 	    ans += "\n";
 	}
-	return hide + go(0,0) + ans + "\n" + show;
+	return hide + clear + go(0,0) + ans + "\n" + show;
     }
     
     public KnightsTour(int size){
@@ -44,23 +44,20 @@ public class KnightsTour{
     } 
     
     public boolean solve(){
-	board[0][0] = 0;
 	return solve(0, 0, 0);
     }
       
     public boolean solve(int startx, int starty){
-	board[startx][starty] = 0;
 	return solve(startx, starty, 0);
     }
       
     public boolean solve(int x,int y,int currentMoveNumber){
-	board[x][y] = currentMoveNumber;
-
 	System.out.println(this);
 	wait(20);
+	
+	board[x][y] = currentMoveNumber;
 
-
-	if(currentMoveNumber == size * size -1){
+	if(currentMoveNumber == size * size){
 	    return true;
 	}
 	if(board[x][y] == -1){
@@ -75,14 +72,11 @@ public class KnightsTour{
 
 		return true;
 	    }
-	    
-	   
-	return false;
+	}    
+	return false;	
     }
-      
-}
 
-public static void main(String[]args){
-    KnightsTour b = new KnightsTour(Integer.parseInt(args[0]));
-    
-}
+    public String name(){
+	return "zhang.tina";
+    }
+}    
