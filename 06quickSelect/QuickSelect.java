@@ -3,10 +3,13 @@ import java.util.*;
 public class QuickSelect{
     public static int partition(int[]ary, int si, int ei){
 	Random rand = new Random();
-	int pivot = ary[rand.nextInt(ei-si) + si];
+	int num = rand.nextInt(ei-si) + s;
+	int pivot = ary[num];
 
 	System.out.println(pivot);
-
+	int start = si;
+	int end = ei;
+	swap(ary, pivot, num);
 	
 	/*
 	int end = ei;
