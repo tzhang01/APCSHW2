@@ -6,7 +6,11 @@ public class LNode{
 	setData(data);
 	setNext(null);
     }
-    
+    public LNode(int data, LNode link){
+    	setData(data);
+    	setNext(link);
+    }
+   
     public int getData(){
 	return data;
     }
