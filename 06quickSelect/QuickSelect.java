@@ -33,18 +33,17 @@ public class QuickSelect{
 	}
 
 	public static int quickSelect(int[] ary, int numLowest){
-		int start = 0;
-		int end = ary.length-1;
+		return quickH(ary, 0, ary.length-1, numLowest);
+	}
+	private static int quickH(int[]ary, int start, int end, int numLowest){
 		int test = partition(ary, start, end);
-		while(test != numLowest){
-			if(test > numLowest){
-				start = test;
-			}else{
-				end = test;
-			}
-			test = partition(ary, start, end);
+		if(test > numLowest){
+			return quickH(ary, start, test-1,numLowest);
+		}else if(test < numLowest){
+			return quickH(ary, test+1, end,numLowest);
+		}else{
+			return ary[test];	
 		}
-		return ary[test];
 	}
 
 	public static void swap(int[] ary, int i, int j){
@@ -57,7 +56,7 @@ public class QuickSelect{
 		sortHelper(ary, 0, ary.length-1);
 	}
 
-	public static void sortHelper(int[] ary, int start, int end){
+	private static void sortHelper(int[] ary, int start, int end){
 		if(start<end){
 			int pivot = partition(ary,start,end);
 			sortHelper(ary,start,pivot-1);
@@ -69,7 +68,7 @@ public class QuickSelect{
 		int[] test = new int[] {1, 45, 2234, 67, 34 ,7, 8, 24, 9};
 		System.out.println(Arrays.toString(test));
 		//partition(test, 0, test.length-1);
-		//System.out.println(quickSelect(test, 3) + " should return 9");
+		System.out.println(quickSelect(test, 3) + " should return 3");
 		quickSort(test);
 		System.out.println(Arrays.toString(test));
 	}
