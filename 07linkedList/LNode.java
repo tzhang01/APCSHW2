@@ -1,27 +1,27 @@
-public class LNode{
-    private LNode next;
-    private int data;
+public class LNode<T>{
+    private LNode<T> next;
+    private T data;
 
-    public LNode(int data){
+    public LNode(T data){
 	setData(data);
 	setNext(null);
     }
-    public LNode(int data, LNode link){
+    public LNode(T data, LNode<T> link){
     	setData(data);
     	setNext(link);
     }
    
-    public int getData(){
+    public T getData(){
 	return data;
     }
-    public void setData(int d){
+    public void setData(T d){
 	data = d;
     }
 
-    public LNode getNext(){
+    public LNode<T> getNext(){
 	return next;
     }
-    public void setNext(LNode n){
+    public void setNext(LNode<T> n){
 	next = n;
     }
 
@@ -30,11 +30,11 @@ public class LNode{
 	return result + data;
     }
     /*
-    public static void main(String[]args){
-	LNode n = new LNode(5);
-	System.out.println(n);
-	n.setData(2);
-	System.out.println(n);
-    }
+      public static void main(String[]args){
+      LNode n = new LNode(5);
+      System.out.println(n);
+      n.setData(2);
+      System.out.println(n);
+      }
     */
 }
