@@ -2,6 +2,10 @@ public class LNode<T>{
     private LNode<T> next;
     private T data;
 
+    public String name(){
+	return "zhang.tina";
+    }
+
     public LNode(T data){
 	setData(data);
 	setNext(null);
