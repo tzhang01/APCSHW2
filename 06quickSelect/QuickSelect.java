@@ -1,6 +1,9 @@
 import java.util.*;
 
 public class QuickSelect{
+	public String name(){
+		return "zhang.tina";
+    	}
 	public static int partition(int[]ary, int si, int ei){
 		
 		Random rand = new Random();
