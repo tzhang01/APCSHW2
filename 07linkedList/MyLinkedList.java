@@ -125,7 +125,7 @@ public class MyLinkedList<T>{
     }
 
     public static void main(String args[]){
-	MyLinkedList<Integer> s = new MyLinkedList();
+	MyLinkedList<Integer> s = new MyLinkedList<Integer>();
 	s.add(3);
 	s.add(2);
 	s.add(9);
