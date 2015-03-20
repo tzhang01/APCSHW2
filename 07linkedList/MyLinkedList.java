@@ -3,18 +3,25 @@ import java.util.*;
 public class MyLinkedList<T> implements Iterable<T>{
 
     private class MyLLIterator<T> implements Iterator<T>{
-	private LNode<T> reference;
-	public  MyLLIterator(){
+	private LNode<T> now;
+	public  MyLLIterator(LNode<T> head){
+	    now = head;
 	}
 	public boolean hasNext(){
 	    boolean result = false;
-	    if(reference.getNext() != null){
+	    if(now.getNext() != null){
 		result = true;
 	    }
 	    return result;
 	}
 	public T next(){
-	    return null;
+	    if(hasNext()){
+		T result = now.getData();
+		now = now.getNext();
+		return result;
+	    }else{
+		throw new NoSuchElementException();
+	    }
 	}
 	public void remove(){
 	    throw new UnsupportedOperationException();
@@ -22,7 +29,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     }
 
     public Iterator<T> iterator(){
-	return new MyLLIterator<T>();
+	return new MyLLIterator<T>(start);
     }
 
     private LNode<T> start;
