@@ -11,6 +11,9 @@ public class MyStack<T>{
 	public T peek(){
 		return stk.get(0);
 	}
+	public T pop(){
+		return stk.remove(0);
+	}
 
 	public String toString(){
 		return stk.toString();
@@ -24,6 +27,8 @@ public class MyStack<T>{
 
 		System.out.println(q);
 		System.out.println(q.peek());
+		System.out.println(q.pop());
+		System.out.println(q);
 	}
 }
 
