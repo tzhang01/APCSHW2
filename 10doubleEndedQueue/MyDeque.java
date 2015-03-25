@@ -17,18 +17,28 @@ public class MyDeque<T>{
     }
 
     public T getFirst(){
+	if(ary[head] == null){
+	    throw new NoSuchElementException();
+	}
 	return (T)ary[head];
     }
     
     /**
-    public void addFirst(T value){
-	if(isFull){
-	    Object[] newAry = new Object[ary.length * 2];
-	    for(int i=0;i<ary.length;i++){
-		newAry[i] = ary[i];
-	    }
-	    ary = newAry;
-	}
+       public void addFirst(T value){
+       if(isFull){
+       Object[] newAry = new Object[ary.length * 2];
+       for(int i=0;i<ary.length;i++){
+       newAry[i] = ary[i];
+       }
+       ary = newAry;
+       }
 	
+    **/
+
+    /**
+       public static void main(String[] args){
+       MyDeque<Integer> q = new MyDeque<Integer>();
+	
+       }
     **/
 }
