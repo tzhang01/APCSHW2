@@ -68,5 +68,11 @@ public class Maze{
 	}
 	return ans;
     }
+    public String toString(boolean animate){
+	if(animate){
+	    return hide + "[0;0H" + toString() + "\n" + show;
+	}
+	return toString();
+    }
 
 } 
