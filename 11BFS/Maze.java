@@ -11,7 +11,7 @@ public class Maze{
     private char[][]maze;
     private int maxx, maxy;
     private int startx, starty;
-    
+
     public Maze(String filename){
 	startx = -1;
 	starty = -1;
@@ -42,22 +42,19 @@ public class Maze{
 	    }
 	}
     }
-    private class Coordinate{
-	private int row, col;
-	
-	public Coordinate(int x, int y){
-	    row = x;
-	    col = y;
+    /*
+    private class Frontier{
+	int row;
+	int col;
+	int mode;
+	public Frontier(int mode){
+	    this.mode = mode;
 	}
-
-	public int getRow(){
-	    return row;
-	}
-	public int getCol(){
-	    return col;
-	}
+	public void add(int row, int col, int mode){
+	    if(mode == 1){ //1 means BSF
+		
     }
-
+	    */
     public String toString(){
 	String ans = "" + maxx + ", " + maxy + "\n";
 	for(int i=0; i<maxx*maxy;i++){
@@ -75,4 +72,7 @@ public class Maze{
 	return toString();
     }
 
+    public boolean solveBFS(boolean animate){
+	return true;
+    }
 } 
