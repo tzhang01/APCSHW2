@@ -12,8 +12,6 @@ public class Maze{
     private int maxx, maxy;
     private int startx, starty;
 
-    private MyDeque<Character> coo = new MyDeque();
-
     public Maze(String filename){
 	startx = -1;
 	starty = -1;
@@ -54,22 +52,23 @@ public class Maze{
 	    this.previous = previous;
 	}
     }
-    /*
+   
     private class Frontier{
 	int mode;
+	private MyDeque<Coordinate> todo =  new MyDeque<Coordinate>();
 	public Frontier(int mode){
 	    this.mode = mode;
 	}
-	public void add(int mode){
+	public void add(int mode, Coordinate value){
 	    if(mode == 1){ //1 means BSF
-		coordinates.addLast();
+		todo.addLast(value);
 	    }
 	    else{
-		coordinates.addFirst();
+		todo.addFirst(value);
 	    }
 	}
     }
-    */
+    
     public String toString(){
 	String ans = "" + maxx + ", " + maxy + "\n";
 	for(int i=0; i<maxx*maxy;i++){
