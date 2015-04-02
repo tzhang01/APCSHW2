@@ -45,11 +45,11 @@ public class Maze{
   
     private class Coordinate{
 	private int row, col;
-	private Coordinate previous;
-	public Coordinate(int row, int col, Coordinate previous){
+	//	private Coordinate previous;
+	public Coordinate(int row, int col){
 	    this.row = row;
 	    this.col = col;
-	    this.previous = previous;
+	    //  this.previous = previous;
 	}
     }
    
@@ -93,6 +93,19 @@ public class Maze{
     }
 
     public boolean solveBFS(boolean animate){
-	return true;
+	Frontier list = new Frontier(1);
+	if(startx < 0){
+	    System.out.println("No starting point 'S' found in the maze");
+	    return false;
+	}
+	for(int i=startx;i<maze.length;i++){
+	    for(int j=starty;j<maze[i].length;j++){
+		if(maze[i][j] == 'E'){
+		    return true;
+		}
+		if(maze[i][j] == ' '){
+		    Coordinate cor = new Coordinate(i,j)
+	    
+	    
     }
 } 
