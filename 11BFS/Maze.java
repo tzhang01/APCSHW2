@@ -67,6 +67,12 @@ public class Maze{
 		todo.addFirst(value);
 	    }
 	}
+	public Coordinate remove(int mode){
+	    if(mode == 1){
+		return todo.removeFirst();
+	    }
+	    return todo.removeLast();
+	}
     }
     
     public String toString(){
