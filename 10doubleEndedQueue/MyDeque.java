@@ -14,6 +14,7 @@ public class MyDeque<T>{
 
     public MyDeque(){
 	ary = new Object[10];
+	priorities = new int[10];
 	head = 0;
 	tail = 9;
 	size = 0;
