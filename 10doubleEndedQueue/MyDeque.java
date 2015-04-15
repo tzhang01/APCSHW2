@@ -40,25 +40,25 @@ public class MyDeque<T>{
 	
     public void resize(){
 	Object[] newArray = new Object[ary.length*2];
-	//	Object[] newPQ = new int[priorities.length*2];
+       	int[] newPQ = new int[priorities.length*2];
 	if(head < tail){
 	    for(int i=head; i<=tail;i++){
 		newArray[i] = ary[i];
-		//	newPQ[i] = priorities[i];
+	       	newPQ[i] = priorities[i];
 	    }
 	}else{
 	    for(int i=head;i<ary.length;i++){
 		newArray[i] = ary[i];
-		//	newPQ[i] = priorities[i];
+	       	newPQ[i] = priorities[i];
 	    }
 	    for(int i=0;i<=tail;i++){
 		newArray[i+ary.length] = ary[i];
-		//	newPQ[i+priorities.length] = priorities[i];
+	       	newPQ[i+priorities.length] = priorities[i];
 	    }
 	    tail += ary.length;
 	}
 	ary = newArray;
-	
+	priorities = newPQ;
     }
     public boolean isFull(Object[] a){
 	for(int i=0;i<a.length;i++){
