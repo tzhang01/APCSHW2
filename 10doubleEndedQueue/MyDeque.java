@@ -21,22 +21,27 @@ public class MyDeque<T>{
     }
 
     public String toString(){
-	String result = "[ ";
+	String array = "[ ";
+	String prior = "[";
 	if(size>0){
 	    if(head <= tail){
 		for(int i=head;i<=tail;i++){
-		    result += ary[i] + " ";
+		    array += ary[i] + " ";
+		    prior += priorities[i] + " ";
 		}
 	    }else{
 		for(int i=head;i < ary.length;i++){
-		    result += ary[i] + " ";
+		    array += ary[i] + " ";
+		    prior += priorities[i] + " ";
 		}
 		for(int i=0;i<=tail;i++){
-		    result += ary[i] + " ";
+		    array += ary[i] + " ";
+		    prior += priorities[i] + " ";
 		}
 	    }
 	}
-	return result + "]";
+	
+	return array + "]" + "\n" + prior + "]";
     }
 	
     public void resize(){
@@ -161,7 +166,7 @@ public class MyDeque<T>{
     public static void main(String[] args){
 	MyDeque<Integer> q = new MyDeque<Integer>();
 	MyDeque<Integer> d = new MyDeque<Integer>();
-	System.out.println(q);
+	/*System.out.println(q);
 	q.addFirst(1);
 	System.out.println(q);
 	q.addFirst(2);
@@ -176,7 +181,9 @@ public class MyDeque<T>{
 	}
 	System.out.println(d.removeLast());
 	System.out.println(d.removeFirst());
-	System.out.println(d);
+	System.out.println(d); */
+	
+	
     }
 
 }
