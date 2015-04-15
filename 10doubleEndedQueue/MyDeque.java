@@ -40,20 +40,25 @@ public class MyDeque<T>{
 	
     public void resize(){
 	Object[] newArray = new Object[ary.length*2];
+	//	Object[] newPQ = new int[priorities.length*2];
 	if(head < tail){
 	    for(int i=head; i<=tail;i++){
 		newArray[i] = ary[i];
+		//	newPQ[i] = priorities[i];
 	    }
 	}else{
 	    for(int i=head;i<ary.length;i++){
 		newArray[i] = ary[i];
+		//	newPQ[i] = priorities[i];
 	    }
 	    for(int i=0;i<=tail;i++){
 		newArray[i+ary.length] = ary[i];
+		//	newPQ[i+priorities.length] = priorities[i];
 	    }
 	    tail += ary.length;
 	}
 	ary = newArray;
+	
     }
     public boolean isFull(Object[] a){
 	for(int i=0;i<a.length;i++){
@@ -126,11 +131,32 @@ public class MyDeque<T>{
 	return result;
     }
 
+    //priority queue functions
     public void add(T thing, int priority){
 	addLast(thing);
 	priorities[tail] = priority;
     }
-		
+
+    public T removeSmallest(){
+	int min = 0;
+	for(int i=0;i<priorities.length;i++){
+	    if(priorities[i] < priorities[min]){
+		min = i;
+	    }
+	}
+	T result = (T)ary[min];
+	ary[min] = ary[head];
+	ary[head] = result;
+	head++;
+	size--;
+	if(head == ary.length){
+	    head = 0;
+	}
+	return result;
+    }
+
+    
+
     public static void main(String[] args){
 	MyDeque<Integer> q = new MyDeque<Integer>();
 	MyDeque<Integer> d = new MyDeque<Integer>();
