@@ -30,6 +30,9 @@ public class Maze{
 		public int getRow(){
 			return row;
 		}
+		public int getCol(){
+			return col;
+		}
     }
    
     private class Frontier{
