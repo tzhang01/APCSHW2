@@ -47,12 +47,12 @@ public class Maze{
 		    this.mode = mode;
 		}
 
-		public void add(int mode, Coordinate value){
-			if(mode == 1){ //1 means BSF
-				todo.addLast(value);
-	    	}
-	    	else{
+		public void add(Coordinate value){
+			if(mode == DFS){ 
 				todo.addFirst(value);
+	    	}
+	    	else if(mode == BFS){
+				todo.addLast(value);
 	    	}
 		}
 	
