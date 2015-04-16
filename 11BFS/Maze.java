@@ -181,4 +181,7 @@ public class Maze{
     public boolean solveBFS(boolean animate){
 	return solve(0,animate);
     }
+    public boolean solveDFS(boolean animate){
+	return solve(1,animate);
+    }
 } 
