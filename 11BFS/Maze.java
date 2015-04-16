@@ -122,7 +122,7 @@ public class Maze{
 		return toString();
     }
 
-/*
+
     public boolean solve(int mode, boolean animate){
 		Frontier list = new Frontier(mode);
 		Coordinate start = new Coordinate(startx, starty);
@@ -133,7 +133,7 @@ public class Maze{
 	    	return false;
 		}
 		
-		while(list.hasNext()){
+		while(!list.isEmpty()){
 			if(animate){
 				try {
 	    			Thread.sleep(20);
@@ -147,7 +147,7 @@ public class Maze{
 			int row = now.getRow();
 			int col = now.getCol();
 
-			if((!(row < 0 || col < 0 || x >= maxx || y >= maxy)) && 
+			if((!(row < 0 || col < 0 || row >= maxx || col >= maxy)) && 
 			   (!(maze[row][col] == '#' || maze[row][col] == '.'))){
 				if(maze[row][col] == 'E'){
 					end = now;
@@ -176,5 +176,5 @@ public class Maze{
 		}
 		System.out.println("No Solution");
 		return false;
-	}*/
+	}
 } 
