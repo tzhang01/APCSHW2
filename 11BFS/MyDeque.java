@@ -67,6 +67,10 @@ public class MyDeque<T>{
 	}
 	return true;
     }
+
+    public boolean isEmpty(){
+	return size == 0;
+    }
     public T getFirst(){
 	if(ary[head] == null){
 	    throw new NoSuchElementException();
