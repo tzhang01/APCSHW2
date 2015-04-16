@@ -169,7 +169,7 @@ public class MyDeque<T>{
 
 	//testing priority queue
 	System.out.println(q);
-	for(int i =0;i<4;i++){
+	for(int i =0;i<20;i++){
 	    q.add(i,i);
 	}
 	System.out.println(q);
