@@ -5,10 +5,15 @@ public class Maze{
     private static final String clear = "\033[2J";
     private static final String hide = "\033[?251";
     private static final String show = "\033[?25h";
+	private String go(int x, int y){
+		return ("\033[" + x + ";" + y + "H");
+	}	
+
     private static final int DFS = 1;
     private static final int BFS = 0;
     
     private char[][]maze;
+	private int[] solution;
     private int maxx, maxy;
     private int startx, starty;
 
@@ -37,8 +42,8 @@ public class Maze{
    
     private class Frontier{
 		private int mode;
-		private int DFS = 0;
-		private int BFS = 1;
+		private int DFS = 1;
+		private int BFS = 0;
 		//private int Best = 2;
 		//private int AStar = 3;
 		private MyDeque<Coordinate> todo =  new MyDeque<Coordinate>();
@@ -59,10 +64,10 @@ public class Maze{
 		public Coordinate remove(){
 		    if(mode == DFS){
 				return todo.removeLast();
-		    }else
-		    	return todo.removeFirst();
-			}
-    	}
+		    }
+		    return todo.removeFirst();
+		}
+    }
 
 	public Maze(String filename){
 		startx = -1;
@@ -107,7 +112,7 @@ public class Maze{
     }
     public String toString(boolean animate){
 		if(animate){
-	 	   return hide + "[0;0H" + toString() + "\n" + show;
+	 	   return hide + clear + toString() + "\n" + show;
 		}
 		return toString();
     }
