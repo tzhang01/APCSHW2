@@ -37,6 +37,9 @@ public class MyDeque<T>{
 		return result + "]";
 	}
 	
+	public boolean isEmpty(){
+		return size == 0;
+	}
 	public void resize(){
 		Object[] newArray = new Object[ary.length*2];
 		if(head < tail){
