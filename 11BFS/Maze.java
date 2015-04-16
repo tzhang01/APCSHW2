@@ -36,7 +36,11 @@ public class Maze{
     }
    
     private class Frontier{
-		int mode;
+		private int mode;
+		private int DFS = 0;
+		private int BFS = 1;
+		private int Best = 2;
+		private int AStar = 3;
 		private MyDeque<Coordinate> todo =  new MyDeque<Coordinate>();
 
 		public Frontier(int mode){
