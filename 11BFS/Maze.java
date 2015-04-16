@@ -39,8 +39,8 @@ public class Maze{
 		private int mode;
 		private int DFS = 0;
 		private int BFS = 1;
-		private int Best = 2;
-		private int AStar = 3;
+		//private int Best = 2;
+		//private int AStar = 3;
 		private MyDeque<Coordinate> todo =  new MyDeque<Coordinate>();
 
 		public Frontier(int mode){
@@ -56,13 +56,13 @@ public class Maze{
 	    	}
 		}
 	
-		public Coordinate remove(int mode){
-		    if(mode == 1){
-				return todo.removeFirst();
-		    }
-		    return todo.removeLast();
-		}
-    }
+		public Coordinate remove(){
+		    if(mode == DFS){
+				return todo.removeLast();
+		    }else
+		    	return todo.removeFirst();
+			}
+    	}
 
 	public Maze(String filename){
 		startx = -1;
