@@ -21,8 +21,11 @@ public class Maze{
 		    this.col = col;
 		}
 		
-		public void setPrev(Coordinate cor){
+		public void setPrevious(Coordinate cor){
 			previous = cor;
+		}
+		public Coordinate getPrevious(){
+			return previous;
 		}
     }
    
