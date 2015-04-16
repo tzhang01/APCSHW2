@@ -190,4 +190,9 @@ public class Maze{
     public boolean solveDFS(){
 	return solveDFS(false);
     }
+
+    public static void main(String[] args){
+	
+    }
+
 } 
