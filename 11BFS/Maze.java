@@ -16,6 +16,7 @@ public class Maze{
 	private int[] solution;
     private int maxx, maxy;
     private int startx, starty;
+	private Coordinate end;
 
 	private class Coordinate{
 		private int row, col;
@@ -67,6 +68,10 @@ public class Maze{
 		    }
 		    return todo.removeFirst();
 		}
+
+		public boolean isEmpty(){
+			return todo.isEmpty();
+		}
     }
 
 	public Maze(String filename){
@@ -112,27 +117,64 @@ public class Maze{
     }
     public String toString(boolean animate){
 		if(animate){
-	 	   return hide + clear + toString() + "\n" + show;
+	 	   return hide + clear + go(0,0) + toString() + "\n" + show;
 		}
 		return toString();
     }
 
 /*
-    public boolean solveBFS(boolean animate){
-	Frontier list = new Frontier(1);
-	if(startx < 0){
-	    System.out.println("No starting point 'S' found in the maze");
-	    return false;
-	}
-	for(int i=startx;i<maze.length;i++){
-	    for(int j=starty;j<maze[i].length;j++){
-		if(maze[i][j] == 'E'){
-		    return true;
+    public boolean solve(int mode, boolean animate){
+		Frontier list = new Frontier(mode);
+		Coordinate start = new Coordinate(startx, starty);
+		list.add(start);
+	
+		if(startx < 0){
+	    	System.out.println("No starting point 'S' found in the maze");
+	    	return false;
 		}
-		if(maze[i][j] == ' '){
-		    Coordinate cor = new Coordinate(i,j)
-	   
-	    
-    }
-	*/
+		
+		while(list.hasNext()){
+			if(animate){
+				try {
+	    			Thread.sleep(20);
+				}
+				catch (InterruptedException e) {
+				}
+				System.out.println(toString(animate));
+			}
+
+			Coordinate now = list.remove();
+			int row = now.getRow();
+			int col = now.getCol();
+
+			if((!(row < 0 || col < 0 || x >= maxx || y >= maxy)) && 
+			   (!(maze[row][col] == '#' || maze[row][col] == '.'))){
+				if(maze[row][col] == 'E'){
+					end = now;
+					Coordinate place = end;
+					while(place != null){
+						place = place.getPrevious();
+					}
+					System.out.println(toString());
+					return true;
+				}else{
+					maze[row][col] = '.';
+					Coordinate a = new Coordinate(row-1, col);
+					a.setPrevious(now);
+					Coordinate b = new Coordinate(row+1, col);
+					a.setPrevious(now);
+					Coordinate c = new Coordinate(row, col-1);
+					a.setPrevious(now);
+					Coordinate d = new Coordinate(row, col+1);
+					a.setPrevious(now);
+					list.add(a);
+					list.add(b);
+					list.add(c);
+					list.add(d);
+				}
+			}
+		}
+		System.out.println("No Solution");
+		return false;
+	}*/
 } 
