@@ -45,11 +45,10 @@ public class Maze{
   
     private class Coordinate{
 	private int row, col;
-	//	private Coordinate previous;
+	private Coordinate previous;
 	public Coordinate(int row, int col){
 	    this.row = row;
 	    this.col = col;
-	    //  this.previous = previous;
 	}
     }
    
@@ -92,6 +91,7 @@ public class Maze{
 	return toString();
     }
 
+/*
     public boolean solveBFS(boolean animate){
 	Frontier list = new Frontier(1);
 	if(startx < 0){
@@ -105,7 +105,8 @@ public class Maze{
 		}
 		if(maze[i][j] == ' '){
 		    Coordinate cor = new Coordinate(i,j)
-	    
+	   
 	    
     }
+	*/
 } 
