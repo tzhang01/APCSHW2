@@ -27,6 +27,9 @@ public class Maze{
 		public Coordinate getPrevious(){
 			return previous;
 		}
+		public int getRow(){
+			return row;
+		}
     }
    
     private class Frontier{
