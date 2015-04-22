@@ -9,24 +9,31 @@ public class Maze{
 		return ("\033[" + x + ";" + y + "H");
     }	
 
-    private static final int DFS = 1;
-    private static final int BFS = 0;
+    private static final int DFS = 0;
+    private static final int BFS = 1;
+	private static final int Best = 2;
+	private static final int AStar = 3;
     
     private char[][]maze;
     private int[] solution;
     private int maxx, maxy;
     private int startx, starty;
     private Coordinate end;
+	private int leng,steps;
 
     private class Coordinate{
-		private int row, col;
+		private int row, col, steps;
 		private Coordinate previous;
 
 		public Coordinate(int row, int col){
 		    this.row = row;
 		    this.col = col;
 		}
-			
+		
+		public Coordinate(int row, int col, int steps){
+			this(row, col);
+			this.steps = steps;
+		}
 		public void setPrevious(Coordinate cor){
 		    previous = cor;
 		}
@@ -191,7 +198,12 @@ public class Maze{
 		return solveDFS(false);
     }
 
-
+	public boolean solveBest(boolean animate){
+		return solve(2, animate);
+	}
+	public boolean solveBest(){
+		return solveBest(false);
+	}
 
     public static void main(String[] args){
 		Maze m = new Maze("data1.dat");
