@@ -15,9 +15,10 @@ public class Maze{
 	private static final int AStar = 3;
     
     private char[][]maze;
-    private int[] solution;
+    private int[] sol;
     private int maxx, maxy;
     private int startx, starty;
+	private int endx, endy;
     private Coordinate end;
 	private int leng,steps;
 
@@ -46,34 +47,51 @@ public class Maze{
 		public int getCol(){
 		    return col;
 		}
+		public void setSteps(int s){
+			steps = s;
+		}
+		public int getSteps(){
+			return steps;
+		}
     }
    
     private class Frontier{
 		private int mode;
-		private int DFS = 1;
-		private int BFS = 0;
-		//private int Best = 2;
-		//private int AStar = 3;
+		private int DFS = 0;
+		private int BFS = 1;
+		private int Best = 2;
+		private int AStar = 3;
+		private int endx, endy;
 		private MyDeque<Coordinate> todo =  new MyDeque<Coordinate>();
 	
 		public Frontier(int mode){
 		    this.mode = mode;
 		}
+		public Frontier(int mode, int x, int y){
+			this(mode);
+			endx = x;	
+			endy = y;
+		}
 	
 		public void add(Coordinate value){
+			int x = value.getRow();
+			int y = value.getCol();
 		    if(mode == DFS){ 
 				todo.addFirst(value);
-		    }
-		    else if(mode == BFS){
+		    }else if(mode == BFS){
 				todo.addLast(value);
-		    }
+		    }else if(mode == Best){
+				todo.add(value, Math.abs(endx - x) + Math.abs(endy - y));
+			}else{
+				todo.add(value, Math.abs(endx - x) + Math.abs(endy - y) + 		            value.getSteps());
+			}
 		}
 		
 		public Coordinate remove(){
-		    if(mode == DFS){
-				return todo.removeLast();
+		    if(mode == DFS || mode == BFS){
+				return todo.removeFirst();
 	    	}
-	    	return todo.removeFirst();
+	    	return todo.removeSmallest();
 		}	
 
 		public boolean isEmpty(){
@@ -109,6 +127,10 @@ public class Maze{
 				startx = i%maxx;
 				starty = i/maxx;
 		    }
+			if(c== 'E'){
+				endx= i%maxx;
+				endy= i/maxx;
+			}
 		}
     }
     
@@ -131,8 +153,8 @@ public class Maze{
 
 
     public boolean solve(int mode, boolean animate){
-		Frontier list = new Frontier(mode);
-		Coordinate start = new Coordinate(startx, starty);
+		Frontier list = new Frontier(mode, endx, endy);
+		Coordinate start = new Coordinate(startx, starty, 0);
 		list.add(start);
 	
 		if(startx < 0){
@@ -153,33 +175,35 @@ public class Maze{
 	    	Coordinate now = list.remove();
 	    	int row = now.getRow();
 	    	int col = now.getCol();
+		
 
-	    	if((!(row < 0 || col < 0 || row >= maxx || col >= maxy)) && 
-	       	   (!(maze[row][col] == '#' || maze[row][col] == '.'))){
-				if(maze[row][col] == 'E'){
-		    		end = now;
-		    		Coordinate place = end;
-		    		while(place != null){
-						place = place.getPrevious();
-		    		}
-		    		System.out.println(toString());
-		    		return true;
-				}else{
-		    		maze[row][col] = '.';
-		    		Coordinate a = new Coordinate(row-1, col);
-		    		a.setPrevious(now);
-		    		Coordinate b = new Coordinate(row+1, col);
-		    		a.setPrevious(now);
-		    		Coordinate c = new Coordinate(row, col-1);
-		    		a.setPrevious(now);
-		    		Coordinate d = new Coordinate(row, col+1);
-		    		a.setPrevious(now);
-		    		list.add(a);
-		    		list.add(b);
-		    		list.add(c);
-		    		list.add(d);
-				}		
-	    	}
+			if(maze[row][col] == 'E'){
+		    	end = now;
+		    	Coordinate place = end;
+		    	while(place != null){
+					leng++;
+					place = place.getPrevious();
+		    	}
+				addCoords();
+		    	System.out.println(toString());
+		    	return true;
+			}else{
+		    	maze[row][col] = '.';
+				Coordinate[] possible = new Coordinate[]{
+					new Coordinate(row-1, col, now.getSteps() + 1),
+		    		new Coordinate(row+1, col, now.getSteps() + 1),
+		    		new Coordinate(row, col-1, now.getSteps() + 1),
+		    		new Coordinate(row, col+1, now.getSteps() + 1),
+				};
+				for(Coordinate cor : possible){
+					cor.setPrevious(now);
+					int x = cor.getRow();
+					int y = cor.getCol();
+					if ( (!(row < 0 || col < 0 || row >= maxx || col >= maxy)) 						   &&(!(maze[row][col] == '#' || maze[row][col] == '.')) ){
+						list.add(cor);
+					}
+				}
+			}
 		}
 		System.out.println("No Solution");
 		return false;
@@ -204,7 +228,29 @@ public class Maze{
 	public boolean solveBest(){
 		return solveBest(false);
 	}
+	public boolean solveAStar(boolean animate){
+		return solve(3, animate);
+	}
+	public boolean solveAStar(){
+		return solveAStar(false);
+	}
 
+	public void addCoords(){
+		sol = new int[leng*2];
+		Coordinate e = end;
+		int i =0;
+		while(e!= null){
+			sol[i] = e.getRow();
+			sol[i+1] = e.getCol();
+			i+=2;
+			e = e.getPrevious();
+		}
+		for(int k=0; k<sol.length/2; k++){
+			int temp = sol[k];
+			sol[k] = sol[sol.length - k - 1];
+			sol[sol.length - k - 1] = temp;
+		}
+	}
     public static void main(String[] args){
 		Maze m = new Maze("data1.dat");
 		boolean b = false;
@@ -222,4 +268,5 @@ public class Maze{
 			}
 		} 
 	}
+	
 }
