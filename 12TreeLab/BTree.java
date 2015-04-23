@@ -22,6 +22,7 @@ public class BTree<E> {
       ====================*/     
     public void add( E d ) {
 	TreeNode<E> bn = new TreeNode<E>(d);
+	add(root, bn);
     }
     
 
