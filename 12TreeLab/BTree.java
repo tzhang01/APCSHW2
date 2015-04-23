@@ -47,6 +47,11 @@ public class BTree<E> {
 	
 	Random rand = new Random(1);
 	double side = rand.nextDouble();
+	if(side > 0.5){
+	    add(curr.getRight(), bn);
+	}else{
+	    add(curr.getLeft(), bn);
+	}
 	
     }
     
