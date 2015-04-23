@@ -17,7 +17,7 @@ public class TreeNode<T>{
 	left = l;
     }
 
-    public TreeNode getLeft(){
+    public TreeNode<T> getLeft(){
 	return left;
     }
 
@@ -25,7 +25,7 @@ public class TreeNode<T>{
 	right = r;
     }
 
-    public TreeNode getRight(){
+    public TreeNode<T> getRight(){
 	return right;
     }
 
