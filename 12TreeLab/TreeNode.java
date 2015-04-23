@@ -3,8 +3,10 @@ public class TreeNode<T>{
     private TreeNode<T> right;
     private T data;
     
-    public TreeNode(TreeNode left, TreeNode right, T data){
-
+    public TreeNode(TreeNode<T> left, TreeNode<T> right, T data){
+	setLeft(left);
+	setRight(right);
+	setData(data);
     }
 
     public void setLeft(TreeNode<T> l){
