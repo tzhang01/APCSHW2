@@ -7,6 +7,10 @@ public class TreeNode<T>{
 	setLeft(left);
 	setRight(right);
 	setData(data);
+    }	
+
+    public TreeNode(T data){
+	setData(data);
     }
 
     public void setLeft(TreeNode<T> l){
