@@ -16,6 +16,7 @@ public class TreeNode<T>{
     }
 
     public void setRight(TreeNode r){
+	right = r;
     }
 
     public TreeNode getRight(){
