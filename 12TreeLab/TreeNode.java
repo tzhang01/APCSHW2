@@ -12,7 +12,7 @@ public class TreeNode<T>{
     }
 
     public TreeNode getLeft(){
-	return;
+	return left;
     }
 
     public void setRight(TreeNode r){
