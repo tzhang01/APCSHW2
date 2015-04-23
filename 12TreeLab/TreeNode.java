@@ -24,6 +24,7 @@ public class TreeNode<T>{
     }
 
     public void setData(T d){
+	data = d;
     }
 
     public T getData(){
