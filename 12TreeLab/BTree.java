@@ -104,7 +104,7 @@ public class BTree<E> {
                given level, ordered left -> right
       
       ====================*/
-    public String getLevel( TreeNode<E> curr, int level, int currLevel ) {
+    private String getLevel( TreeNode<E> curr, int level, int currLevel ) {
 	return "";
     }
     
