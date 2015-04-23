@@ -44,6 +44,10 @@ public class BTree<E> {
 	if(curr.getRight().equals(null)){
 	    curr.setRight(bn);
 	}
+	
+	Random rand = new Random(1);
+	double side = rand.nextDouble();
+	
     }
     
     public void traverse( int mode) {
