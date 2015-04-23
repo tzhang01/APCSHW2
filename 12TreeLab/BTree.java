@@ -41,6 +41,9 @@ public class BTree<E> {
 	if(curr.getLeft().equals(null)){
 	    curr.setLeft(bn);
 	}
+	if(curr.getRight().equals(null)){
+	    curr.setRight(bn);
+	}
     }
     
     public void traverse( int mode) {
