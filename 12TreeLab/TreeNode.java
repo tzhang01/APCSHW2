@@ -20,7 +20,7 @@ public class TreeNode<T>{
     }
 
     public TreeNode getRight(){
-	return;
+	return right;
     }
 
     public void setData(T d){
