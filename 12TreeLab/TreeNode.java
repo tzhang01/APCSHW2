@@ -8,7 +8,7 @@ public class TreeNode<T>{
     }
 
     public void setLeft(TreeNode l){
-
+	left = l;
     }
 
     public TreeNode getLeft(){
