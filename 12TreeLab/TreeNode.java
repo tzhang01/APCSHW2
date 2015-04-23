@@ -7,7 +7,7 @@ public class TreeNode<T>{
 
     }
 
-    public void setLeft(TreeNode l){
+    public void setLeft(TreeNode<T> l){
 	left = l;
     }
 
@@ -15,7 +15,7 @@ public class TreeNode<T>{
 	return left;
     }
 
-    public void setRight(TreeNode r){
+    public void setRight(TreeNode<T> r){
 	right = r;
     }
 
@@ -28,6 +28,6 @@ public class TreeNode<T>{
     }
 
     public T getData(){
-	return;
+	return data;
     }
 }
