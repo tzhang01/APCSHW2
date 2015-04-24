@@ -73,7 +73,10 @@ public class BTree<E> {
       Prints out the elements in the tree by doing an
       pre-order Traversal
       ====================*/
-    public void preOrder( TreeNode<E> curr ) {
+    public void preOrder( TreeNode<E> curr ) {	
+	String elements = "";
+	elements += curr.getData;
+	    
     }
 
 
