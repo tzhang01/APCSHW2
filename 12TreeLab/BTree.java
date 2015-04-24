@@ -38,23 +38,24 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-	if(curr.getLeft().equals(null)){
-	    curr.setLeft(bn);
-	}
-	if(curr.getRight().equals(null)){
-	    curr.setRight(bn);
-	}
+	if(curr != null){
+	    if(curr.getLeft() == null){
+		curr.setLeft(bn);
+	    }
+	    if(curr.getRight() == null){
+		curr.setRight(bn);
+	    }
 	
-	Random rand = new Random(1);
-	double side = rand.nextDouble();
-	if(side > 0.5){
-	    add(curr.getRight(), bn);
-	}else{
-	    add(curr.getLeft(), bn);
-	}
+	    Random rand = new Random(1);
+	    double side = rand.nextDouble();
+	    if(side > 0.5){
+		add(curr.getRight(), bn);
+	    }else{
+		add(curr.getLeft(), bn);
+	    }
 	
+	}
     }
-    
     public void traverse( int mode) {
 	if ( mode == PRE_ORDER )
 	    preOrder( root );
