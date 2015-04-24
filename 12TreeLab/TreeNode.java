@@ -10,6 +10,8 @@ public class TreeNode<T>{
     }	
 
     public TreeNode(T data){
+	setLeft(null);
+	setRight(null);
 	setData(data);
     }
 
