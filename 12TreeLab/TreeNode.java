@@ -23,6 +23,10 @@ public class TreeNode<T>{
 	return left;
     }
 
+    public boolean hasLeft(){
+	return left != null;
+    }
+
     public void setRight(TreeNode<T> r){
 	right = r;
     }
