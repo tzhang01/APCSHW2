@@ -150,7 +150,11 @@ public class BTree<E> {
       
       ====================*/
     private String getLevel( TreeNode<E> curr, int level, int currLevel ) {
-	return "";
+		if(level > getHeight()){
+			System.out.println("Invalid level");
+		}
+		return "";
+
     }
     
     /*======== public String toString()) ==========
