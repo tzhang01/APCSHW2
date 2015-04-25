@@ -11,7 +11,7 @@ public class BTree<E> {
     private TreeNode<E> root;
 
     public BTree() {
-	root = null;
+		root = null;
     }
 
     /*======== public void add() ==========
@@ -21,8 +21,8 @@ public class BTree<E> {
       Wrapper method for the recursive add()
       ====================*/     
     public void add( E d ) {
-	TreeNode<E> bn = new TreeNode<E>(d);
-	add(root, bn);
+		TreeNode<E> bn = new TreeNode<E>(d);
+		add(root, bn);
     }
     
 
@@ -38,32 +38,33 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-	if(curr != null){
-	    if(curr.getLeft() == null){
-		curr.setLeft(bn);
-	    }
-	    if(curr.getRight() == null){
-		curr.setRight(bn);
-	    }
-	
-	    Random rand = new Random(1);
-	    double side = rand.nextDouble();
-	    if(side > 0.5){
-		add(curr.getRight(), bn);
+		if(curr == null){
+			curr = bn;
+		}
+		else if(!curr.hasLeft()){
+			curr.setLeft(bn);
+	    }else if(!curr.hasRight()){
+			curr.setRight(bn);
 	    }else{
-		add(curr.getLeft(), bn);
-	    }
+			Random rand = new Random(1);
+	    	double side = rand.nextDouble();
+	    	if(side > 0.5){
+				add(curr.getRight(), bn);
+	    	}else{
+				add(curr.getLeft(), bn);
+	    	}
 	
-	}
+		}
     }
+
     public void traverse( int mode) {
-	if ( mode == PRE_ORDER )
-	    preOrder( root );
-	else if ( mode == IN_ORDER )
-	    inOrder( root );
-	else
-	    postOrder( root );
-	System.out.println();
+		if ( mode == PRE_ORDER )
+	    	preOrder( root );
+		else if ( mode == IN_ORDER )
+	    	inOrder( root );
+		else
+		    postOrder( root );
+		System.out.println();
     }
 
     /*======== public void preOrder() ==========
@@ -74,8 +75,8 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {	
-	String elements = "";
-	elements += curr.getData;
+	//String elements = "";
+	//elements += curr.getData;
 	    
     }
 
