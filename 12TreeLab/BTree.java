@@ -156,7 +156,11 @@ public class BTree<E> {
 		if(curr == null){
 			return "";
 		}
-		return"";
+		if(currLevel == level){
+			return curr.toString();
+		}
+		return  getLevel(curr.getLeft(), level, currLevel +1) +
+				getLevel(curr.getRight(), level, currLevel +1);
     }
     
     /*======== public String toString()) ==========
