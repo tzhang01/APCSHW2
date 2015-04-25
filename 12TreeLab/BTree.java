@@ -122,7 +122,7 @@ public class BTree<E> {
       Wrapper for the recursive getHeight method
       ====================*/
     public int getHeight() {
-	return getHeight( root );
+		return getHeight( root );
     }
     /*======== public int getHeight() ==========
       Inputs:   TreeNode<E> curr  
@@ -130,7 +130,15 @@ public class BTree<E> {
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
-	return -1;
+		if(curr == null){
+			return 0;
+		}else if(curr.hasLeft()){
+			return 1 + getHeight(curr.getLeft());	
+		}else if(curr.hasRight()){
+			return 1 + getHeight(curr.getRight());
+		}else{
+			return 1;
+		}
     }
 
     /*======== public String getLevel() ==========
