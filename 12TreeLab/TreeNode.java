@@ -4,42 +4,46 @@ public class TreeNode<T>{
     private T data;
     
     public TreeNode(TreeNode<T> left, TreeNode<T> right, T data){
-	setLeft(left);
-	setRight(right);
-	setData(data);
+		setLeft(left);
+		setRight(right);
+		setData(data);
     }	
 
     public TreeNode(T data){
-	setLeft(null);
-	setRight(null);
-	setData(data);
+		setLeft(null);
+		setRight(null);
+		setData(data);
     }
 
     public void setLeft(TreeNode<T> l){
-	left = l;
+		left = l;
     }
 
     public TreeNode<T> getLeft(){
-	return left;
+		return left;
     }
 
     public boolean hasLeft(){
-	return left != null;
+		return left != null;
     }
 
     public void setRight(TreeNode<T> r){
-	right = r;
+		right = r;
     }
 
     public TreeNode<T> getRight(){
-	return right;
+		return right;
     }
+	
+	public boolean hasRight(){
+		return right != null;
+	}
 
     public void setData(T d){
-	data = d;
+		data = d;
     }
 
     public T getData(){
-	return data;
+		return data;
     }
 }
