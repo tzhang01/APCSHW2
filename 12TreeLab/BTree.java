@@ -185,24 +185,28 @@ public class BTree<E> {
 
       ====================*/
     public String toString() {
-	return "";
+		String out = "";
+		for(int i = 0;i< getHeight(); i++){
+			out += getLevel(root, i, 0) + "\n";
+		}
+		return out;
     }
 	
 
     public static void main( String[] args ) {
 
-	BTree<Integer> t = new BTree<Integer>();
+		BTree<Integer> t = new BTree<Integer>();
 
-	for ( int i=0; i < 8; i++ ) 
-	    t.add( i );
-	System.out.println( "Pre-order: ");
-	t.traverse( PRE_ORDER );
-	System.out.println( "In-order: ");
-	t.traverse( IN_ORDER );
-	System.out.println( "Post-order: ");
-	t.traverse( POST_ORDER );
-	System.out.println( "Height: " + t.getHeight() );
-
-	System.out.println( t );
+		for ( int i=0; i < 8; i++ ) 
+	    	t.add( i );
+		System.out.println( "Pre-order: ");
+		t.traverse( PRE_ORDER );
+		System.out.println( "In-order: ");
+		t.traverse( IN_ORDER );
+		System.out.println( "Post-order: ");
+		t.traverse( POST_ORDER );
+		System.out.println( "Height: " + t.getHeight() );
+	
+		System.out.println( t );
     }
 }
