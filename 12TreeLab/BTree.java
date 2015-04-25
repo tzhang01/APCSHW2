@@ -75,8 +75,11 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {	
-	//String elements = "";
-	//elements += curr.getData;
+		if(curr!= null){
+			System.out.println(curr.getData());
+			preOrder(curr.getLeft());
+			preOrder(curr.getRight());
+		}
 	    
     }
 
