@@ -92,6 +92,11 @@ public class BTree<E> {
       in-order Traversal
       ====================*/
     public void inOrder( TreeNode<E> curr ) {
+		if(curr != null){
+			inOrder(curr.getLeft());
+			System.out.println(curr.getData());
+			inOrder(curr.getRight());
+		}
     }
 
     /*======== public void postOrder() ==========
