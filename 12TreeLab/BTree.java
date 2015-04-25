@@ -153,8 +153,10 @@ public class BTree<E> {
 		if(level > getHeight()){
 			System.out.println("Invalid level");
 		}
-		return "";
-
+		if(curr == null){
+			return "";
+		}
+		return"";
     }
     
     /*======== public String toString()) ==========
