@@ -108,6 +108,11 @@ public class BTree<E> {
 
       ====================*/
     public void postOrder( TreeNode<E> curr ) {
+		if(curr != null){
+			postOrder(curr.getLeft());
+			postOrder(curr.getRight());
+			System.out.println(curr.getData());
+		}
     }
     
     /*======== public int getHeight()) ==========
