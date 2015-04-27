@@ -132,12 +132,11 @@ public class BTree<E> {
     public int getHeight( TreeNode<E> curr ) {
 		if(curr == null){
 			return 0;
-		}else if(curr.hasLeft()){
-			return 1 + getHeight(curr.getLeft());	
-		}else if(curr.hasRight()){
-			return 1 + getHeight(curr.getRight());
+		}else if(! curr.hasLeft() || ! curr.hasRight()){
+			return 1 ;
 		}else{
-			return 1;
+			return 1 + Math.max(getHeight(curr.getLeft()), 
+					    getHeight(curr.getLeft()));
 		}
     }
 
@@ -149,18 +148,18 @@ public class BTree<E> {
                given level, ordered left -> right
       
       ====================*/
-    private String getLevel( TreeNode<E> curr, int level, int currLevel ) {
+    private String getLevel( TreeNode<E> curr, int level) {
 		if(level > getHeight()){
 			System.out.println("Invalid level");
 		}
 		if(curr == null){
 			return "";
 		}
-		if(currLevel == level){
+		if(level == 0){
 			return curr.toString();
 		}
-		return  getLevel(curr.getLeft(), level, currLevel +1) +
-				getLevel(curr.getRight(), level, currLevel +1);
+		return  getLevel(curr.getLeft(), level-1) +
+				getLevel(curr.getRight(), level-1);
     }
     
     /*======== public String toString()) ==========
@@ -187,7 +186,7 @@ public class BTree<E> {
     public String toString() {
 		String out = "";
 		for(int i = 0;i< getHeight(); i++){
-			out += getLevel(root, i, 0) + "\n";
+			out += getLevel(root, i) + "\n";
 		}
 		return out;
     }
@@ -196,7 +195,11 @@ public class BTree<E> {
     public static void main( String[] args ) {
 
 		BTree<Integer> t = new BTree<Integer>();
-
+		t.add(1);
+		t.add(2);
+		System.out.println(t);
+		System.out.println( "Height: " + t.getHeight() );
+		/*
 		for ( int i=0; i < 8; i++ ) 
 	    	t.add( i );
 		System.out.println( "Pre-order: ");
@@ -208,5 +211,6 @@ public class BTree<E> {
 		System.out.println( "Height: " + t.getHeight() );
 	
 		System.out.println( t );
+		*/
     }
 }
