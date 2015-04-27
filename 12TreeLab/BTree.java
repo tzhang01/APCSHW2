@@ -9,9 +9,11 @@ public class BTree<E> {
     
 
     private TreeNode<E> root;
+    private Random rand;
 
     public BTree() {
 		root = null;
+		rand = new Random(2);
     }
 
     /*======== public void add() ==========
@@ -38,23 +40,21 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-		if(curr == null){
-			curr = bn;
+	if(curr == null){
+		curr = bn;
+	}else if(! curr.hasLeft()){
+		curr.setLeft(bn);
+	}else if(! curr.hasRight()){
+		curr.setRight(bn);
+	}else{
+		int x = rand.nextInt(2);
+		if(x == 0){
+			add(curr.getLeft(), bn);
+		}else{
+			add(curr.getRight(), bn);
 		}
-		else if(!curr.hasLeft()){
-			curr.setLeft(bn);
-	    }else if(!curr.hasRight()){
-			curr.setRight(bn);
-	    }else{
-			Random rand = new Random(1);
-	    	double side = rand.nextDouble();
-	    	if(side > 0.5){
-				add(curr.getRight(), bn);
-	    	}else{
-				add(curr.getLeft(), bn);
-	    	}
-	
-		}
+	}
+		
     }
 
     public void traverse( int mode) {
@@ -132,7 +132,7 @@ public class BTree<E> {
     public int getHeight( TreeNode<E> curr ) {
 		if(curr == null){
 			return 0;
-		}else if(! curr.hasLeft() || ! curr.hasRight()){
+		}else if(! curr.hasLeft() && ! curr.hasRight()){
 			return 1 ;
 		}else{
 			return 1 + Math.max(getHeight(curr.getLeft()), 
@@ -196,7 +196,7 @@ public class BTree<E> {
 
 		BTree<Integer> t = new BTree<Integer>();
 		t.add(1);
-		t.add(2);
+		//t.add(2);
 		System.out.println(t);
 		System.out.println( "Height: " + t.getHeight() );
 		/*
