@@ -3,40 +3,36 @@ public class BSTreeNode<T> implements Comparable<T>{
     private BSTreeNode<T> right;
     private T data;
     
-    public TreeNode(TreeNode<T> left, TreeNode<T> right, T data){
+    public int compareTo(T o){
+	return -1;
+    }
+
+    public BSTreeNode(BSTreeNode<T> left, BSTreeNode<T> right, T data){
 	setLeft(left);
 	setRight(right);
 	setData(data);
     }	
 
-    public TreeNode(T data){
+    public BSTreeNode(T data){
 	setLeft(null);
 	setRight(null);
 	setData(data);
     }
 
-    public void setLeft(TreeNode<T> l){
+    public void setLeft(BSTreeNode<T> l){
 	left = l;
     }
 
-    public TreeNode<T> getLeft(){
+    public BSTreeNode<T> getLeft(){
 	return left;
     }
 
-    public boolean hasLeft(){
-	return left != null;
-    }
-
-    public void setRight(TreeNode<T> r){
+    public void setRight(BSTreeNode<T> r){
 	right = r;
     }
 
-    public TreeNode<T> getRight(){
+    public BSTreeNode<T> getRight(){
 	return right;
-    }
-	
-    public boolean hasRight(){
-	return right != null;
     }
 
     public void setData(T d){
