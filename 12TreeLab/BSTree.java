@@ -39,6 +39,10 @@ public class BSTree <T extends Comparable> {
 	//if the current is null, make the current t
 	if(curr == null){
 	    tree = t;
+	}
+	if(curr.isLeaf()){
+	    if(curr.compareTo(t) < 0){
+		curr.setLeft(t
 	}else{
 	    tree = new BSTreeNode(null);
 	}
