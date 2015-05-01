@@ -34,7 +34,15 @@ public class BSTree <T extends Comparable> {
       Add t to the correct place in the tree rooted at curr.
       ====================*/
     private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
-	return null;
+	BSTreeNode<T> tree;
+
+	//if the current is null, make the current t
+	if(curr == null){
+	    tree = t;
+	}else{
+	    tree = new BSTreeNode(null);
+	}
+	return tree;
     }
 
     /*======== public void remove() ==========
