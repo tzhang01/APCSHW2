@@ -1,4 +1,9 @@
 public class MyHeap{
+    private int[] heap;
+    private int mode;
+    private static final int MAX = 0;
+    private static final int MIN = 1;
+
     public MyHeap(){
     }
     public MyHeap(boolean isMax){
