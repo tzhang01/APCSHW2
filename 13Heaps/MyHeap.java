@@ -1,5 +1,7 @@
+import java.util.*;
+
 public class MyHeap{
-    private int[] heap = new int[10];
+    private int[] heap = new int[2];
     private int mode;
     private int size = 0;
     private static final int MAX = 0;
@@ -29,6 +31,10 @@ public class MyHeap{
 	}
 	size++;
 	    
+    }
+
+    private void resize(){
+	heap = Arrays.copyOf(heap, heap.length*2+1);
     }
 
     public int peek(){
