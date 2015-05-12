@@ -25,19 +25,19 @@ public class MyHeap{
     public int remove(){
 	return 0;
     }
-    public void add(int value){
+    public void add(int value, int mode){
 	//if adding value to empty heap
 	if(size == 0){
 	    heap[1] = value;
-	}
-	
+	}	
 	//checks if heap need to be resized
 	if(size == heap.length-1){
 	    resize();
-	}
-	
+	}	
 	//adds value to the next spot
 	heap[size+1] = value;
+	//compare value to parent
+	//if min: smaller push up, max: bigger push up
 	size++;
 	    
     }
