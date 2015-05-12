@@ -12,10 +12,9 @@ public class MyHeap{
 	    mode = MAX;
 	}else{
 	    mode = MIN;
-	}
-	
-	
+	}	
     }
+
     public String toString(){
 	return "";
     }
@@ -25,6 +24,6 @@ public class MyHeap{
     public void add(int value){
     }
     public int peek(){
-	return 0;
+	return heap[1];
     }
 }
