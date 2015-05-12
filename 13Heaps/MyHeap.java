@@ -5,6 +5,7 @@ public class MyHeap{
     private static final int MIN = 1;
 
     public MyHeap(){
+	this(true);
     }
     public MyHeap(boolean isMax){
 	if (isMax){
