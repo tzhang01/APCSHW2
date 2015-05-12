@@ -1,5 +1,5 @@
 public class MyHeap{
-    private int[] heap;
+    private int[] heap = new int[2];
     private int mode;
     private static final int MAX = 0;
     private static final int MIN = 1;
@@ -7,6 +7,13 @@ public class MyHeap{
     public MyHeap(){
     }
     public MyHeap(boolean isMax){
+	if (isMax){
+	    mode = MAX;
+	}else{
+	    mode = MIN;
+	}
+	
+	
     }
     public String toString(){
 	return "";
