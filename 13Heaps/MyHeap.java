@@ -26,4 +26,9 @@ public class MyHeap{
     public int peek(){
 	return heap[1];
     }
+
+    public static void main(String[]args){
+	MyHeap h = new MyHeap();
+    }
+	
 }
