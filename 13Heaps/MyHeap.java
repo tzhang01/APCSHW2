@@ -26,9 +26,16 @@ public class MyHeap{
 	return 0;
     }
     public void add(int value){
+	//if adding value to empty heap
 	if(size == 0){
 	    heap[1] = value;
 	}
+	
+	//checks if heap need to be resized
+	if(size == heap.length-1){
+	    resize();
+	}
+	
 	size++;
 	    
     }
