@@ -36,6 +36,8 @@ public class MyHeap{
 	    resize();
 	}
 	
+	//adds value to the next spot
+	heap[size+1] = value;
 	size++;
 	    
     }
