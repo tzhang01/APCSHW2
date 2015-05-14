@@ -75,10 +75,17 @@ public class MyHeap{
 	while(getParent(i) > 0){
 		int parentIn = getParent(i);
 	//if min: smaller push up, max: bigger push up
-		if(heap[i] > heap[parentIn]){
+		if(mode == MIN){
+		    if(heap[i] < heap[parentIn]){
 			swap(i, parentIn);
+		    }
+		    i = parentIn;
+		}else{
+		    if(heap[i] > heap[parentIn]){
+			swap(i, parentIn);
+		    }
+		    i = parentIn;
 		}
-	    	i = parentIn;
 	}
     }
 
@@ -120,16 +127,20 @@ public class MyHeap{
 	return result;
     }
     public static void main(String[]args){
-	MyHeap h = new MyHeap();
-	System.out.println(h);
-	h.add(1);
-	h.add(4);
-	for(int i=1;i <10;i++){
-		h.add(i);
-		System.out.println(h);
-	}
-	System.out.println(h.remove());
-	System.out.println(h);
+	MyHeap max = new MyHeap();
+	MyHeap min = new MyHeap(false);
+	System.out.println(max);
+	max.add(5);
+	max.add(4);
+	max.add(10);
+	max.add(50);
+	min.add(5);
+	min.add(4);
+	min.add(10);
+	System.out.println("max heap: " + max);
+	System.out.println("min heap: " + min);
+	System.out.println(min.remove());
+	System.out.println(max.remove());
 	
     }
 	
