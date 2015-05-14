@@ -140,57 +140,100 @@ public class BTree<E> {
 		}
     }
 
-    /*======== public String getLevel() ==========
-      Inputs:   TreeNode<E> curr
-                int level
-                int currLevel  
-      Returns: A string containing all the elements on the
-               given level, ordered left -> right
-      
-      ====================*/
-    private String getLevel( TreeNode<E> curr, int level) {
-		if(level > getHeight()){
-			System.out.println("Invalid level");
-		}
-		if(curr == null){
-			return "";
-		}
-		if(level == 0){
-			return curr.toString();
-		}
-		return  getLevel(curr.getLeft(), level-1) +
-				getLevel(curr.getRight(), level-1);
+    private int maxLength() {
+	// returns the minimum number of characters required
+	// to print the data from any node in the tree
+	if (root == null)
+	    return 0;
+	return maxLength(root);
     }
-    
-    /*======== public String toString()) ==========
-      Inputs:   
-      Returns: A string representation of the tree
-     
-      This string should display each level as a separate line.
-      A simple version might look something like this:
 
-      0
-      1 2
-      3 4 5
+    private int maxLength(TreeNode<E> curr) {
+	int max = curr.toString().length();
+	int temp;
+	if (curr.getLeft() != null) {
+	    temp = maxLength(curr.getLeft());
+	    if (temp > max)
+		max = temp;
+	}
+	if (curr.getRight() != null) {
+	    temp = maxLength(curr.getRight());
+	    if (temp > max)
+		max = temp;
+	}
+	return max;
+    }
 
-      Note that you cannot tell exactly where 3, 4 and 5 lie.
-      That is ok, but if you want a CHALLENGE, you can try to
-      get the output to look nicer, something like this:
-             0
+    private String spaces(double n) {
+	// returns a String of n spaces
+	String result = "";
+	for (int i = 0; i < n; i++)
+	    result += " ";
+	return result;
+    }
 
-          1      2
+    /*
+      getLevel will produce a String for each level of the tree.
+      The resulting Strings will look like this:
+      ._______________________________
+      ._______________._______________
+      ._______._______._______._______
+      .___.___.___.___.___.___.___.___
+      ._._._._._._._._._._._._._._._._
+      toString will combine those Strings and provide an output that
+      will look like this:
+      _______________.
+      _______._______________.
+      ___._______._______._______.
+      _.___.___.___.___.___.___.___.
+      ._._._._._._._._._._._._._._._.
+      In these diagrams, each dot represents wordLength characters,
+      each underscore represents wordLength spaces, and, for any nodes
+      that are null, the dots will be "replaced" by underscores.
+    */
 
-            3  4   5
-
-      ====================*/
+    private String getLevel(TreeNode<E> curr, int currLevel, int targetLevel, 						       int height, int wordLength) {
+	if (currLevel == 1){
+	    return curr.toString() + 
+		spaces(wordLength - curr.toString().length()) +
+		spaces(wordLength * 
+		       Math.pow(2, height - targetLevel + 1) - 
+		       wordLength);
+	}
+	String result = "";
+	if (curr.getLeft() != null){
+	    result += getLevel(curr.getLeft(), currLevel - 1, targetLevel, 					height, wordLength);
+	}else{
+	    result += spaces(wordLength * Math.pow(2, height - targetLevel + 					currLevel - 1));
+	}
+	if (curr.getRight() != null){
+	    result += getLevel(curr.getRight(), currLevel - 1, targetLevel, 					height, wordLength);
+	}else{ 
+	    result += spaces(wordLength * Math.pow(2, height - targetLevel + 					currLevel - 1));
+	}
+	return result;
+    }
+		
     public String toString() {
-		String out = "";
-		for(int i = 0;i< getHeight(); i++){
-			out += getLevel(root, i) + "\n";
-		}
-		return out;
-    }
-	
+	if (root == null)
+	    return "";
+	String result = "";
+	int height = getHeight();
+	int wordLength = maxLength();
+	// add every level of the tree except the last one
+	for (int level = 1; level < height; level++){
+	    // remove extra spaces from the end of each level's String to prevent lines from
+	    // getting unnecessarily long and add spaces to the front of each level's String
+	    // to keep everything centered
+	    result += spaces(wordLength * Math.pow(2, height - level) - wordLength) +
+		getLevel(root, level, level, height, wordLength).replaceFirst("\\s+$", "") +
+		"\n";
+	}
+	// now add the last level (level = height)
+	result += getLevel(root, height, height, height, wordLength).replaceFirst("\\s+$", "");
+				
+	return result;
+    }	
 
     public static void main( String[] args ) {
 
