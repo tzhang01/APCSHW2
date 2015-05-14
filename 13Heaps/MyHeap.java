@@ -3,7 +3,6 @@ import java.util.*;
 public class MyHeap{
     private int[] heap;
     private int mode;
-    private int size = 0;
     private static final int MAX = 0;
     private static final int MIN = 1;
 
@@ -21,7 +20,6 @@ public class MyHeap{
 	}else{
 	    mode = MIN;
 	}	
-	heap[0] = size;
     }
 
     public String toString(){
@@ -30,21 +28,29 @@ public class MyHeap{
     public int remove(){
 	return 0;
     }
-    public void add(int value, int mode){
+    public void add(int value){
 	//if adding value to empty heap
-	if(size == 0){
+	if(heap[0] == 0){
 	    heap[1] = value;
 	}	
 	//checks if heap need to be resized
-	if(size == heap.length-1){
+	if(heap[0] == heap.length-1){
 	    resize();
-	}	
+	}
+	int size = heap[0] + 1;	
 	//adds value to the next spot
-	heap[size+1] = value;
+	heap[size] = value;
+	heap[0] = size;
+	int i = size;
 	//compare value to parent
+	while(getParent(i) > 0){
+		int parentIn = getParent(i);
 	//if min: smaller push up, max: bigger push up
-	size++;
-	    
+		if(heap[i] > heap[parentIn]){
+			swap(i, parentIn);
+		}
+	    	i = parentIn;
+	}
     }
 
     private void resize(){
