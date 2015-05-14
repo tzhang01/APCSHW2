@@ -55,11 +55,21 @@ public class MyHeap{
 	return heap[1];
     }
 
-    public void swap(int a int b){
+    public void swap(int a, int b){
 	int temp = heap[a];
 	heap[a] = heap[b];
 	heap[b] = temp;
     }
+
+    private int getLeft(int i){
+	return i *2;
+    }
+    private int getRight(int i){
+	return i*2 +1;
+    }
+    private int getParent(int i){
+	return i /2;
+    }	
 
     public static void main(String[]args){
 	MyHeap h = new MyHeap();
