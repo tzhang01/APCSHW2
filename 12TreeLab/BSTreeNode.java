@@ -48,4 +48,8 @@ public class BSTreeNode<T extends Comparable> {
 		}
 	}
 
+	public int compareTo(BSTreeNode<T> o){
+		return getData().compareTo((T)o.getData());
+	}
+
 }
