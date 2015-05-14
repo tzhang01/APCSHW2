@@ -258,9 +258,6 @@ public class BSTree <T extends Comparable> {
 				
 	return result;
     }
-   
-    public static void main( String[] args ) {
 
-    }
 
 }
