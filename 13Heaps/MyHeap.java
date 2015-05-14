@@ -26,7 +26,39 @@ public class MyHeap{
 	return "";
     }
     public int remove(){
-	return 0;
+	int size = heap[0];
+	if(size == 0){
+		throw new NoSuchElementException();
+	}else{
+		int result = heap[1];
+		heap[1] = heap[size]; 
+		heap[0] = --size;
+		int i =1;
+		while(getLeft(i) <= size){
+			int l = getLeft(i);
+			int r = getRight(i);
+			if(r <= size){
+				if(heap[i] < heap[l] || heap[i] < heap[r]){
+					int dif = heap[1] - heap[r];
+					if(dif > 0){
+						swap(i,1);
+						i = 1;
+					}else if(dif < 0){
+						swap(i, r);
+						i = r;
+					}
+				}else{
+					return result;
+				}
+			}else if(heap[i] < heap[l]){
+				swap(i, l);
+				i = l;
+			}else{
+				return result;
+			}
+		}
+		return result;
+	}
     }
     public void add(int value){
 	//if adding value to empty heap
