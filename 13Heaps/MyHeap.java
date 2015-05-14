@@ -90,7 +90,11 @@ public class MyHeap{
     }
 
     public int peek(){
-	return heap[1];
+	if(heap[0] == 0){
+		throw new NoSuchElementException();
+	}else{
+		return heap[1];
+	}
     }
 
     public void swap(int a, int b){
