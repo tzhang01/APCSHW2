@@ -9,29 +9,34 @@ public class BSTreeNode<T extends Comparable> {
 
     public BSTreeNode( T d ) {
  
-	data = d;
-	left = right = null;
+		setData(d);
+		left = right = null;
     }
     
     //accessors
     public T getData() {
-	return data;
+		return data;
     }
     public BSTreeNode<T> getLeft() {
-	return left;
+		return left;
     }
     public BSTreeNode<T> getRight() {
-	return right;
+		return right;
     }
 
     //mutators
     public void setData( T d ) {
-	data = d;
+		data = d;
     }
     public void setLeft( BSTreeNode<T> l ) {
-	left = l;
+		left = l;
     }
     public void setRight( BSTreeNode<T> r ) {
-	right = r;
+		right = r;
     }
+
+	public boolean isLeaf(){
+		return getLeft() == null && getRight() == null;
+	}
+
 }
