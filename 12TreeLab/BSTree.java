@@ -4,6 +4,7 @@ import java.util.*;
 public class BSTree <T extends Comparable> {
 
     private BSTreeNode<T> root;
+    private Random rand = new Random();
 
     public BSTree() {
 	root = null;
@@ -11,9 +12,6 @@ public class BSTree <T extends Comparable> {
 
     public boolean isEmpty() {
 	return root == null;
-    }
-    public boolean isLeaf( BSTreeNode<T> t ) {
-	return (t.getLeft() == null && t.getRight() == null);
     }
 
     /*======== public void add() ==========
@@ -34,19 +32,16 @@ public class BSTree <T extends Comparable> {
       Add t to the correct place in the tree rooted at curr.
       ====================*/
     private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
-	BSTreeNode<T> tree;
-
-	//if the current is null, make the current t
 	if(curr == null){
-	    tree = t;
-	}
-	if(curr.isLeaf()){
-	    if(curr.compareTo(t) < 0){
-		curr.setLeft(t
+		return t;
+	}else if(curr.compareTo(t) < 0){
+		curr.setRight(add(curr.getRight(), t));
+		return curr;
 	}else{
-	    tree = new BSTreeNode(null);
+		curr.setLeft(add (curr.getLeft(), t));
+		return curr;
 	}
-	return tree;
+	
     }
 
     /*======== public void remove() ==========
@@ -56,6 +51,7 @@ public class BSTree <T extends Comparable> {
       Wrapper for the recursive remove method
       ====================*/
     public void remove( T c ) {
+	BSTreeNode<T> compare = new BSTreeNode<T>(c);
 	root = remove( root, c );
     }
 
@@ -68,9 +64,65 @@ public class BSTree <T extends Comparable> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-	return null;
+	if(curr == null){
+		return curr;
+	}
+	if(c.compareTo(curr) < 0){
+		curr.setLeft(remove(curr.getLeft(), c));
+	}else if(c.compareTo(curr) > 0){
+		curr.setRight(remove(curr.getRight(), c));
+	}else{
+		if(curr.isLeaf()){
+			curr = null;
+		}else if(curr.numChildren() == 1){
+			if(curr.getLeft() == null){
+				curr.setData(getLater(curr));
+			}else{
+				curr.setData(getPrev(curr));
+			}
+		}else{
+			int x = rand.nextInt(2);
+			if(x == 0){
+				curr.setData(getLater(curr));
+			}else{
+				curr.setData(getPrev(curr));
+			}
+		}
+	}
+	return curr;
     }
 
+    public T getPrev(BSTreeNode<T> curr){
+	if(curr.getLeft().isLeaf()){
+		T data = curr.getLeft().getData();
+		curr.setLeft(null);
+		return data;
+	}else{
+		BSTreeNode<T> r = curr.getLeft();
+		while(r.getRight().getRight() != null){
+			r = r.getRight();
+		}
+		BSTreeNode<T> h = r.getRight();
+		r.setRight(null);
+		return h.getData();
+	}
+     }
+
+     public T getLater(BSTreeNode<T> curr){
+	if(curr.getRight().isLeaf()){
+		T data = curr.getRight().getData();
+		curr.setRight(null);
+		return data;
+	}else{
+		BSTreeNode<T> l = curr.getRight();
+		while(l.getLeft().getLeft() != null){
+			l = l.getLeft();
+		}
+		BSTreeNode<T> h = l.getLeft();
+		l.setLeft(null);
+		return h.getData();
+	}
+      }
 
     /*======== public void inOrder()) ==========
       Inputs:   
