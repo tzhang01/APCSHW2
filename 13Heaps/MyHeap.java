@@ -1,16 +1,21 @@
 import java.util.*;
 
 public class MyHeap{
-    private int[] heap = new int[2];
+    private int[] heap;
     private int mode;
     private int size = 0;
     private static final int MAX = 0;
     private static final int MIN = 1;
 
+    public String name(){
+	return "zhang.tina";
+    }
+
     public MyHeap(){
 	this(true);
     }
     public MyHeap(boolean isMax){
+	heap = new int[5];
 	if (isMax){
 	    mode = MAX;
 	}else{
@@ -48,6 +53,12 @@ public class MyHeap{
 
     public int peek(){
 	return heap[1];
+    }
+
+    public void swap(int a int b){
+	int temp = heap[a];
+	heap[a] = heap[b];
+	heap[b] = temp;
     }
 
     public static void main(String[]args){
