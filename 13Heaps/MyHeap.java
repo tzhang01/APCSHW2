@@ -22,9 +22,6 @@ public class MyHeap{
 	}	
     }
 
-    public String toString(){
-	return "";
-    }
     public int remove(){
 	int size = heap[0];
 	if(size == 0){
@@ -86,7 +83,7 @@ public class MyHeap{
     }
 
     private void resize(){
-	heap = Arrays.copyOf(heap, heap.length*2+1);
+	heap = Arrays.copyOf(heap, heap[0]*2);
     }
 
     public int peek(){
@@ -113,8 +110,27 @@ public class MyHeap{
 	return i /2;
     }	
 
+    public String toString(){
+	String result = "[";
+	for (int i = 1; i <= heap[0]; i ++){
+	    result += " " + heap[i];
+	}
+	result += " ]";
+	
+	return result;
+    }
     public static void main(String[]args){
 	MyHeap h = new MyHeap();
+	System.out.println(h);
+	h.add(1);
+	h.add(4);
+	for(int i=1;i <10;i++){
+		h.add(i);
+		System.out.println(h);
+	}
+	System.out.println(h.remove());
+	System.out.println(h);
+	
     }
 	
 }
