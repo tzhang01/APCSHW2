@@ -38,5 +38,14 @@ public class BSTreeNode<T extends Comparable> {
 	public boolean isLeaf(){
 		return getLeft() == null && getRight() == null;
 	}
+	public int numChildren(){
+		if(isLeaf()){
+			return 0;
+		}else if(getLeft() != null && getRight() != null){
+			return 2;
+		}else{
+			return 1;
+		}
+	}
 
 }
